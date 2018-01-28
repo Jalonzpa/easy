@@ -10,6 +10,8 @@ def my_form_post():
     text = request.form['text']
     button_name = text.upper()
     return ("Your new button is named %s.") % button_name
+    time.sleep(2)
+    return render_template('buttonsetup.html')
  
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
