@@ -1,2 +1,2 @@
-easy.wav
-testforchip.wav
+wavs/easy.wav
+wavs/testforchip.wav
