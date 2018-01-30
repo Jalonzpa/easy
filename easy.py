@@ -1,4 +1,7 @@
+#!/usr/bin/python
+
 import random
+from random import choice
 import subprocess
 import CHIP_IO.GPIO as GPIO
 from flask import Flask, request, render_template
@@ -19,12 +22,16 @@ def my_form_post():
 #Sets up CSID0 as input for button
 GPIO.setup("CSID0", GPIO.IN)
 
+wavs = open('wavs.txt').read().splitlines()
+print(wavs)
+
 #Runs infinitely
 while True:
   #If button pressed
-  wav = random.choice(list(open('wavs.txt')))
   if GPIO.input("CSID0"):
-    subprocess.call(['play', '%s'] % wav)
+    wav = random.choice(wavs)
+    wav = wav.strip('\n')
+    subprocess.call(['play', wav])
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0')
